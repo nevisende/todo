@@ -8,20 +8,25 @@
 
 ![screenshot](./screenshot.png)
 
-You can add, delete and update your to-do list with this project.
+#####You can add, delete and update your to-do list with this project.
 
 ## Built With
 
 - Major languages : Html, CSS, JS
 
+### Setup
+To install all required modules:
+- `npm install`
+
+### Usage
+You can run the project on  `http://localhost:8080/` with webpack by writing the below code:
+- `npm start`
 
 ## 👤 Author
 
 
 - GitHub: [@nevisende](https://github.com/nevisende)
 - Twitter: [@furkandnzhan](https://twitter.com/furkandnzhan)
-
-
 
 
 ## 🤝 Contributing
