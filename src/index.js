@@ -4,7 +4,7 @@
 import './normalize.css';
 import './style.css';
 import main, {
-  addToDo, deleteAll, showAllList,
+  addToDo, deleteAllChecked, getToDoListStorage, showAllList,
 } from './main.js';
 
 const toDoInput = document.getElementById('todo');
@@ -25,7 +25,7 @@ document.body.onload = () => {
 
   clearAll.addEventListener('click', (e) => {
     e.preventDefault();
-    deleteAll();
+    deleteAllChecked(getToDoListStorage());
   });
 
   refreshIcon.addEventListener('click', () => {

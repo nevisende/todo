@@ -14,6 +14,11 @@ export class todoObject {
   }
 }
 
+export function getToDoListStorage() {
+  const toDoListStorage = JSON.parse(localStorage.getItem('toDoListStorage')) || [];
+  return toDoListStorage;
+}
+
 export function showInList(toDo) {
   let finishClass;
   let checked;
@@ -125,7 +130,7 @@ export function focusElements() {
     inputElement.addEventListener('focusin', () => {
       listElement.classList.add('active');
       iElement.classList.replace('fa-ellipsis-v', 'fa-trash-alt');
-      listElement.querySelector('.fa-trash-alt').addEventListener('click', deleteToDoList());
+      listElement.querySelector('.fa-trash-alt').addEventListener('click', deleteToDoList(getToDoListStorage()));
     });
 
     inputElement.addEventListener('focusout', () => {
@@ -141,20 +146,16 @@ export function focusElements() {
   });
 }
 
-export function getToDoListStorage() {
-  const toDoListStorage = JSON.parse(localStorage.getItem('toDoListStorage')) || [];
-  return toDoListStorage;
-}
-
-export function deleteAll() {
-  const toDoListStorage = [];
-  localStorage.setItem('toDoListStorage', JSON.stringify(toDoListStorage));
-  showAllList();
-}
-
 export default function main() {
   deleteToDoList(getToDoListStorage());
   updateDescription(getToDoListStorage());
   loopCheckBoxes(getToDoListStorage());
   focusElements();
+}
+
+export function deleteAllChecked(toDoListStorage) {
+  toDoListStorage = toDoListStorage.filter((el) => el.checked === false);
+  localStorage.setItem('toDoListStorage', JSON.stringify(toDoListStorage));
+  showAllList();
+  main();
 }
