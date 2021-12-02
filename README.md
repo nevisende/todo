@@ -8,6 +8,8 @@
 
 ![screenshot](./screenshot.png)
 
+You can add, delete and update your to-do list with this project.
+
 ## Built With
 
 - Major languages : Html, CSS, JS
