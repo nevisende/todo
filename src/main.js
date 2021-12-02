@@ -1,4 +1,5 @@
-/* eslint-disable max-len *//* eslint-disable linebreak-style */
+/* eslint-disable no-use-before-define *//* eslint-disable linebreak-style */
+/* eslint-disable max-len */
 const toDoInput = document.getElementById('todo');
 const listElement = document.querySelector('.todo-list');
 
@@ -47,7 +48,8 @@ export function showAllList() {
 
 export function addToDo() {
   const toDoListStorage = JSON.parse(localStorage.getItem('toDoListStorage')) || [];
-  const toDo = todoObject.getObject(false, toDoInput.value, (toDoListStorage.at(-1)?.index || 0) + 1);
+  const length = (toDoListStorage.at(-1)?.index + 1) || 0;
+  const toDo = todoObject.getObject(false, toDoInput.value, length);
   showInList(toDo);
   toDoListStorage.push(toDo);
   localStorage.setItem('toDoListStorage', JSON.stringify(toDoListStorage));
@@ -67,8 +69,12 @@ export function deleteToDoList(toDoListStorage) {
         }
       });
       toDoListStorage.splice(index, 1);
+      toDoListStorage.forEach((el, index) => {
+        el.index = index;
+      });
       localStorage.setItem('toDoListStorage', JSON.stringify(toDoListStorage));
-      iTrashElement.parentElement.style.display = 'none';
+      showAllList();
+      main();
     });
   });
 }
@@ -154,8 +160,13 @@ export default function main() {
 }
 
 export function deleteAllChecked(toDoListStorage) {
-  toDoListStorage = toDoListStorage.filter((el) => el.checked === false);
-  localStorage.setItem('toDoListStorage', JSON.stringify(toDoListStorage));
+  const arr = toDoListStorage
+    .filter((el) => el.checked === false)
+    .map((el, index) => {
+      el.index = index;
+      return el;
+    });
+  localStorage.setItem('toDoListStorage', JSON.stringify(arr));
   showAllList();
   main();
 }
