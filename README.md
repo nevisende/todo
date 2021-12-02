@@ -2,7 +2,7 @@
   <img src="https://avatars.githubusercontent.com/u/84407337?v=4" style="border-radius:999px;height:100px;width:100px" alt="Sublime's custom image"/>
 </p>
 
-# My Portfolio
+# To Do List
 
 > Welcome to my to-do project
 
