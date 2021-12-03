@@ -14,13 +14,19 @@
 
 - Major languages : Html, CSS, JS
 
-### Setup
-To install all required modules:
-- `npm install`
+### Setup and Usage
+```
+$ git clone https://github.com/nevisende/todo.git
 
-### Usage
-You can run the project on  `http://localhost:8080/` with webpack by writing the below code:
-- `npm start`
+$ cd todo
+
+and then installing the npm packages
+$ npm i or npm install
+
+and then to run the server
+$ npm start
+
+```
 
 ## 👤 Author
 
