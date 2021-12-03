@@ -1,4 +1,5 @@
-/* eslint-disable max-len *//* eslint-disable linebreak-style */
+/* eslint-disable no-use-before-define *//* eslint-disable linebreak-style */
+/* eslint-disable max-len */
 const toDoInput = document.getElementById('todo');
 const listElement = document.querySelector('.todo-list');
 
@@ -12,6 +13,11 @@ export class todoObject {
   static getObject(checked, description, index) {
     return { checked, description, index };
   }
+}
+
+export function getToDoListStorage() {
+  const toDoListStorage = JSON.parse(localStorage.getItem('toDoListStorage')) || [];
+  return toDoListStorage;
 }
 
 export function showInList(toDo) {
@@ -42,7 +48,8 @@ export function showAllList() {
 
 export function addToDo() {
   const toDoListStorage = JSON.parse(localStorage.getItem('toDoListStorage')) || [];
-  const toDo = todoObject.getObject(false, toDoInput.value, (toDoListStorage.at(-1)?.index || 0) + 1);
+  const length = (toDoListStorage.at(-1)?.index + 1) || 0;
+  const toDo = todoObject.getObject(false, toDoInput.value, length);
   showInList(toDo);
   toDoListStorage.push(toDo);
   localStorage.setItem('toDoListStorage', JSON.stringify(toDoListStorage));
@@ -62,8 +69,12 @@ export function deleteToDoList(toDoListStorage) {
         }
       });
       toDoListStorage.splice(index, 1);
+      toDoListStorage.forEach((el, index) => {
+        el.index = index;
+      });
       localStorage.setItem('toDoListStorage', JSON.stringify(toDoListStorage));
-      iTrashElement.parentElement.style.display = 'none';
+      showAllList();
+      main();
     });
   });
 }
@@ -125,7 +136,7 @@ export function focusElements() {
     inputElement.addEventListener('focusin', () => {
       listElement.classList.add('active');
       iElement.classList.replace('fa-ellipsis-v', 'fa-trash-alt');
-      listElement.querySelector('.fa-trash-alt').addEventListener('click', deleteToDoList());
+      listElement.querySelector('.fa-trash-alt').addEventListener('click', deleteToDoList(getToDoListStorage()));
     });
 
     inputElement.addEventListener('focusout', () => {
@@ -141,20 +152,21 @@ export function focusElements() {
   });
 }
 
-export function getToDoListStorage() {
-  const toDoListStorage = JSON.parse(localStorage.getItem('toDoListStorage')) || [];
-  return toDoListStorage;
-}
-
-export function deleteAll() {
-  const toDoListStorage = [];
-  localStorage.setItem('toDoListStorage', JSON.stringify(toDoListStorage));
-  showAllList();
-}
-
 export default function main() {
   deleteToDoList(getToDoListStorage());
   updateDescription(getToDoListStorage());
   loopCheckBoxes(getToDoListStorage());
   focusElements();
+}
+
+export function deleteAllChecked(toDoListStorage) {
+  const arr = toDoListStorage
+    .filter((el) => el.checked === false)
+    .map((el, index) => {
+      el.index = index;
+      return el;
+    });
+  localStorage.setItem('toDoListStorage', JSON.stringify(arr));
+  showAllList();
+  main();
 }
