@@ -14,6 +14,8 @@
 
 - Major languages : Html, CSS, JS
 
+## Live Demo
+
 ### Setup and Usage
 ```
 $ git clone https://github.com/nevisende/todo.git
