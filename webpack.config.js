@@ -15,7 +15,10 @@ module.exports = {
     maxAssetSize: 512000
 },
   devServer: {
-    static: './dist',
+    static: {
+            directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
