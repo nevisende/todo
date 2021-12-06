@@ -1,22 +1,19 @@
-<p align="center">
-  <img src="https://avatars.githubusercontent.com/u/84407337?v=4" style="border-radius:999px;height:100px;width:100px" alt="Sublime's custom image"/>
-</p>
-
 # To Do List
 
 > Welcome to my to-do project
 
 ![screenshot](./screenshot.png)
 
-#####You can add, delete and update your to-do list with this project.
+##### You can add, delete and update your to-do list with this project.
 
 ## Built With
 
-- Major languages : Html, CSS, JS
+- Major languages : HTML5, CSS, Vanilla JavaScript
 
-## Live Demo
+## [Live Demo](https://nevisende.github.io/todo)
 
-### Setup and Usage
+
+### Installation
 ```
 $ git clone https://github.com/nevisende/todo.git
 
@@ -25,10 +22,20 @@ $ cd todo
 and then installing the npm packages
 $ npm i or npm install
 
-and then to run the server
-$ npm start
+```
+
+### Start the server
 
 ```
+npm start
+```
+Now enter localhost:3000 in the address bar of your browser.
+
+### Dist Folder
+``` 
+npm build
+```
+Production files will be prepared in /dist folder.
 
 ## 👤 Author
 
