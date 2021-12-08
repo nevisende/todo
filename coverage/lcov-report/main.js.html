@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.39% </span>
+                <span class="strong">31.52% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/92</span>
+                <span class='fraction'>29/92</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">30% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/20</span>
+                <span class='fraction'>6/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.67% </span>
+                <span class="strong">25.8% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/31</span>
+                <span class='fraction'>8/31</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.39% </span>
+                <span class="strong">31.52% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/92</span>
+                <span class='fraction'>29/92</span>
             </div>
         
             
@@ -279,7 +279,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -299,23 +299,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -452,8 +452,8 @@ export function showInList(toDo) {
   listElement.insertAdjacentHTML('beforeend', toDoElement);
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >showAllList(</span>) {
-<span class="cstat-no" title="statement not covered" >  listElement.innerHTML = '';</span>
+export function showAllList() {
+  listElement.innerHTML = '';
   const toDoListStorage = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem('toDoListStorage')) || [];</span>
 <span class="cstat-no" title="statement not covered" >  toDoListStorage.forEach(<span class="fstat-no" title="function not covered" >(t</span>oDo) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    showInList(toDo);</span>
@@ -472,24 +472,24 @@ export function addToDo() {
   toDoInput.value = '';
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >deleteToDoList(</span>toDoListStorage) {
-  const iTrashElements = <span class="cstat-no" title="statement not covered" >document.querySelectorAll('.fa-trash-alt');</span>
+export function deleteToDoList(toDoListStorage) {
+  const iTrashElements = document.querySelectorAll('.fa-trash-alt');
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  iTrashElements.forEach(<span class="fstat-no" title="function not covered" >(i</span>TrashElement) =&gt; {</span>
-    const inputElement = <span class="cstat-no" title="statement not covered" >iTrashElement.parentElement.querySelector('[name="input-list"]');</span>
-<span class="cstat-no" title="statement not covered" >    iTrashElement.addEventListener('click', <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-      let index = <span class="cstat-no" title="statement not covered" >0;</span>
-<span class="cstat-no" title="statement not covered" >      toDoListStorage.forEach(<span class="fstat-no" title="function not covered" >(e</span>l, idx) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        if (el.index === +inputElement.id) {</span>
-<span class="cstat-no" title="statement not covered" >          index = idx;</span>
+  iTrashElements.forEach((iTrashElement) =&gt; {
+    const inputElement = iTrashElement.parentElement.querySelector('[name="input-list"]');
+    iTrashElement.addEventListener('click', () =&gt; {
+      let index = 0;
+      toDoListStorage.forEach((el, idx) =&gt; {
+        if (el.index === +inputElement.id) {
+          index = idx;
         }
       });
-<span class="cstat-no" title="statement not covered" >      toDoListStorage.splice(index, 1);</span>
-<span class="cstat-no" title="statement not covered" >      toDoListStorage.forEach(<span class="fstat-no" title="function not covered" >(e</span>l, index) =&gt; {</span>
+      toDoListStorage.splice(index, 1);
+      toDoListStorage.forEach(<span class="fstat-no" title="function not covered" >(e</span>l, index) =&gt; {
 <span class="cstat-no" title="statement not covered" >        el.index = index;</span>
       });
-<span class="cstat-no" title="statement not covered" >      localStorage.setItem('toDoListStorage', JSON.stringify(toDoListStorage));</span>
-<span class="cstat-no" title="statement not covered" >      showAllList();</span>
+      localStorage.setItem('toDoListStorage', JSON.stringify(toDoListStorage));
+      showAllList();
 <span class="cstat-no" title="statement not covered" >      main();</span>
     });
   });
@@ -592,7 +592,7 @@ export function <span class="fstat-no" title="function not covered" >deleteAllCh
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
-                at Wed Dec 08 2021 16:35:17 GMT+0300 (GMT+03:00)
+                at Wed Dec 08 2021 15:24:32 GMT+0100 (West Africa Standard Time)
             </div>
         </div>
         <script src="prettify.js"></script>
