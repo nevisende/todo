@@ -1,6 +1,5 @@
 /* eslint-disable no-use-before-define *//* eslint-disable linebreak-style */
 /* eslint-disable max-len */
-const toDoInput = document.getElementById('todo');
 const listElement = document.querySelector('.todo-list');
 
 export class todoObject {
@@ -21,6 +20,8 @@ export function getToDoListStorage() {
 }
 
 export function showInList(toDo) {
+  const listElement = document.querySelector('.todo-list');
+
   let finishClass;
   let checked;
   if (toDo.checked === true) {
@@ -48,7 +49,9 @@ export function showAllList() {
 
 export function addToDo() {
   const toDoListStorage = JSON.parse(localStorage.getItem('toDoListStorage')) || [];
-  const length = (toDoListStorage.at(-1)?.index + 1) || 0;
+  const toDoInput = document.getElementById('todo');
+  const length = (toDoListStorage[toDoListStorage.length - 1]?.index + 1) || 0;
+
   const toDo = todoObject.getObject(false, toDoInput.value, length);
   showInList(toDo);
   toDoListStorage.push(toDo);
