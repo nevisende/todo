@@ -1,7 +1,5 @@
 /* eslint-disable no-use-before-define *//* eslint-disable linebreak-style */
 /* eslint-disable max-len */
-const listElement = document.querySelector('.todo-list');
-
 export class todoObject {
   constructor(checked, description, index) {
     this.checked = checked;
@@ -40,6 +38,7 @@ export function showInList(toDo) {
 }
 
 export function showAllList() {
+  const listElement = document.querySelector('.todo-list');
   listElement.innerHTML = '';
   const toDoListStorage = JSON.parse(localStorage.getItem('toDoListStorage')) || [];
   toDoListStorage.forEach((toDo) => {
@@ -83,6 +82,7 @@ export function deleteToDoList(toDoListStorage) {
 }
 
 export function updateDescription(toDoListStorage) {
+  const listElement = document.querySelector('.todo-list');
   const toDoList = listElement.querySelectorAll('li');
   toDoList.forEach((toDo) => {
     const inputInToDo = toDo.querySelector('[name="input-list"]');

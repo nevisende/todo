@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
-import { deleteToDoList, addToDo, showInList } from '../main.js';
 import $ from 'jquery';
+import { deleteToDoList, addToDo, showInList } from '../main.js';
 
 jest.mock('../main', () => {
   const originalModule = jest.requireActual('../main');
@@ -25,7 +25,7 @@ describe('To-do test', () => {
     expect(JSON.parse(localStorage.getItem('toDoListStorage'))).toHaveLength(1);
     expect(showInList).toMatch(/Add To-do item for test/);
   });
- 
+
   test('should delete from local storage', () => {
     document.body.innerHTML = '<div id="todo">'
     + '  <span id="username" />'
@@ -35,7 +35,6 @@ describe('To-do test', () => {
     const storage = JSON.parse(localStorage.getItem('toDoListStorage'));
 
     deleteToDoList(storage);
-    
     $('#delete').click();
 
     expect(JSON.parse(localStorage.getItem('toDoListStorage'))).toHaveLength(0);
