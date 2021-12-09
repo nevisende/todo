@@ -50,7 +50,6 @@ describe('To-do test', () => {
       keyCode: 32,
     });
     testedElement.dispatchEvent(event);
-    console.log(document.querySelector('#todo').querySelector('[data-test="one"]').value);
     expect(JSON.parse(localStorage.getItem('toDoListStorage'))[0].description).toBe('Changed');
   });
 
