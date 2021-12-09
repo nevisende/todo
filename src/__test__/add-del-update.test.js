@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import { updateDescription, loopCheckBoxes } from '../main.js';
+import { updateDescription, loopCheckBoxes, deleteAllChecked } from '../main.js';
 
 jest.mock('../main', () => {
   const originalModule = jest.requireActual('../main');
@@ -14,7 +14,7 @@ jest.mock('../main', () => {
 });
 
 describe('To-do test', () => {
-  test('Should be edited with the updateDescription function', () => {
+  beforeEach(() => {
     document.body.innerHTML = ` <div id="todo">
          <span id="username" />
          <input type="text" value="Add To-do item for test" id="todo"/>
@@ -31,35 +31,57 @@ describe('To-do test', () => {
                 <input type="text" name="input-list" value="adnmadn" id="2">
                 <i class="fas fa-ellipsis-v"></i>
             </li></ul>
+            <button type="button" id="clear-all">Clear all completed</button>
       </div>`;
     const fakeListObj = [
-      { checked: false, description: "asdas4ki", index: 0 },
-      { checked: false, description: "asdas4k", index: 0 },
-      { checked: false, description: "asdas4k", index: 0 },
+      { checked: false, description: 'asdas4ki', index: 0 },
+      { checked: false, description: 'asdas4k', index: 0 },
+      { checked: true, description: 'asdas4k', index: 0 },
     ];
     localStorage.setItem('toDoListStorage', JSON.stringify(fakeListObj));
-    const storage = JSON.parse(localStorage.getItem('toDoListStorage')) ;
+  });
+
+  test('Should be edited with the updateDescription function', () => {
+    const storage = JSON.parse(localStorage.getItem('toDoListStorage'));
     updateDescription(storage);
-    const testedElement = document.querySelector('[data-test="one"]')
+    const testedElement = document.querySelector('[data-test="one"]');
     testedElement.value = 'Changed';
     const event = new KeyboardEvent('keyup', {
-      keyCode: 32
+      keyCode: 32,
     });
     testedElement.dispatchEvent(event);
-    console.log(document.querySelector('#todo').querySelector('[data-test="one"]').value )
+    console.log(document.querySelector('#todo').querySelector('[data-test="one"]').value);
     expect(JSON.parse(localStorage.getItem('toDoListStorage'))[0].description).toBe('Changed');
   });
 
   test('Should be updated with completed status', () => {
-    const storage = JSON.parse(localStorage.getItem('toDoListStorage')) ;
+    const storage = JSON.parse(localStorage.getItem('toDoListStorage'));
     const checkbox = document.querySelector('[data-test="two"]');
     loopCheckBoxes(storage);
-    let evt = new MouseEvent("click", {
+    const evt = new MouseEvent('click', {
       bubbles: true,
       cancelable: true,
-      view: window
+      view: window,
     });
     checkbox.dispatchEvent(evt);
     expect(JSON.parse(localStorage.getItem('toDoListStorage'))[0].checked).toBe(true);
-  }) 
+  });
+
+  test('should be deleted all checked list', () => {
+    const storage = JSON.parse(localStorage.getItem('toDoListStorage'));
+    const clearAllButton = document.getElementById('clear-all');
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+    });
+
+    clearAllButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      deleteAllChecked(storage);
+    });
+    clearAllButton.dispatchEvent(evt);
+
+    expect(JSON.parse(localStorage.getItem('toDoListStorage'))).toHaveLength(2);
+  });
 });
