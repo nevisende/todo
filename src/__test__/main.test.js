@@ -1,5 +1,4 @@
 /* eslint-disable linebreak-style */
-import $ from 'jquery';
 import { deleteToDoList, addToDo, showInList } from '../main.js';
 
 jest.mock('../main', () => {
@@ -33,9 +32,14 @@ describe('To-do test', () => {
     + '  <ul class="todo-list"><li> <input name="input-list" id="0"/> <i class="fas fa-trash-alt" id= "delete"></i></li>    </i></ul>'
     + '</div>';
     const storage = JSON.parse(localStorage.getItem('toDoListStorage'));
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+    });
 
     deleteToDoList(storage);
-    $('#delete').click();
+    document.getElementById('delete').dispatchEvent(evt);
 
     expect(JSON.parse(localStorage.getItem('toDoListStorage'))).toHaveLength(0);
   });
